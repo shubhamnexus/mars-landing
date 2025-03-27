@@ -455,10 +455,15 @@ export default function LandingPage() {
                 <span className="relative inline-block">
                   <span className="relative z-10">Reduced Overhead</span>
                   <motion.span 
-                    className="absolute -bottom-2 left-0 w-full h-3 bg-mars-red/50 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="absolute -bottom-2 left-0 w-full h-1 bg-mars-red rounded-full"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.8,
+                      ease: [0.43, 0.13, 0.23, 0.96],
+                      delay: 0.2
+                    }}
                   />
                 </span>
               </h2>
