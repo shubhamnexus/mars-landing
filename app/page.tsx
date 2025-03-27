@@ -234,7 +234,7 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-24 lg:py-32 bg-gradient-to-br from-navy-blue/5 to-mars-red/5 overflow-hidden">
+        <section className="relative py-24 md:py-32 lg:py-40 bg-gradient-to-br from-navy-blue/5 via-white to-mars-red/5 overflow-hidden">
           {/* Background decorative elements */}
           <motion.div 
             animate={{ 
@@ -247,11 +247,11 @@ export default function LandingPage() {
               ease: "linear"
             }}
             className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-mars-red/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-navy-blue/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-40 -right-40 w-96 h-96 bg-mars-red/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-navy-blue/10 rounded-full blur-3xl"></div>
           </motion.div>
           
-          <div className="container relative grid gap-8 md:grid-cols-2 items-center">
+          <div className="container relative grid gap-12 md:grid-cols-2 items-center">
             <motion.div 
               initial="initial"
               animate="animate"
@@ -259,20 +259,27 @@ export default function LandingPage() {
               className="space-y-8">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="inline-block px-4 py-2 bg-mars-red/10 rounded-full">
-                <span className="text-mars-red font-medium">Transform Your Development Team</span>
+                className="inline-flex items-center gap-2 px-6 py-3 bg-mars-red/10 rounded-full border border-mars-red/20">
+                <span className="text-mars-red font-semibold">Transform Your Development Team</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <MoveRight className="h-5 w-5 text-mars-red" />
+                </motion.div>
               </motion.div>
               <motion.h1 
                 variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-navy-blue leading-tight">
-                Hire Top Developers at <span className="text-mars-red relative">
-                  30% Lower Costs
-                  <span className="absolute -bottom-2 left-0 w-full h-2 bg-mars-red/20 rounded-full"></span>
+                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-navy-blue leading-tight">
+                Hire Top Developers at{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10">30% Lower Costs</span>
+                  <span className="absolute -bottom-2 left-0 w-full h-3 bg-mars-red/20 rounded-full"></span>
                 </span>
               </motion.h1>
               <motion.p 
                 variants={fadeInUp}
-                className="text-lg md:text-xl text-gray-700 max-w-xl">
+                className="text-xl md:text-2xl text-gray-700 max-w-xl leading-relaxed">
                 Access pre-vetted tech talent ready to integrate seamlessly into your team without sacrificing quality.
               </motion.p>
               <motion.div 
@@ -304,15 +311,15 @@ export default function LandingPage() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+              className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent z-10"></div>
               <video
                 src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS%20VIDEO%20(Video)%20(1).mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
             </motion.div>
           </div>
