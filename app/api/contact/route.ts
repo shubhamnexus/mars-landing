@@ -62,6 +62,7 @@ export async function POST(request: Request) {
                 padding: 20px 0;
                 border-bottom: 2px solid #E31837;
                 margin-bottom: 20px;
+                background-color: #ffffff;
               }
               .logo {
                 max-width: 200px;
@@ -124,7 +125,7 @@ export async function POST(request: Request) {
           <body>
             <div class="container">
               <div class="header">
-                <img src="https://mars-solutions-group.vercel.app/images/mars-logo.webp" alt="MARS Solutions Group Logo" class="logo">
+                <img src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS-1.webp" alt="MARS Solutions Group Logo" class="logo">
                 <h1 class="title">New Contact Form Submission</h1>
               </div>
               

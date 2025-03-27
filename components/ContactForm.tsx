@@ -70,7 +70,12 @@ export function ContactForm() {
         throw new Error("Failed to send message")
       }
 
-      toast.success("Message sent successfully!")
+      toast.success("Message sent successfully!", {
+        style: {
+          background: '#4CAF50',
+          color: 'white',
+        },
+      })
       form.reset()
     } catch (error) {
       console.error('Error submitting form:', error);
