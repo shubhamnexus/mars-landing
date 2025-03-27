@@ -186,17 +186,17 @@ export default function LandingPage() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container flex h-20 items-center justify-between">
           <motion.div 
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2">
-            <div className="relative h-12 w-[140px]">
+            <div className="relative h-16 w-[180px]">
               <Image
                 src="/images/mars-logo.webp"
                 alt="MARS Solutions Group Logo"
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 120px, 140px"
+                sizes="(max-width: 768px) 160px, 180px"
                 priority
               />
             </div>
@@ -234,100 +234,105 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 md:py-32 lg:py-40 bg-gradient-to-br from-navy-blue/5 via-white to-mars-red/5 overflow-hidden">
-          {/* Background decorative elements */}
+        <section className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-navy-blue/80 via-navy-blue/70 to-navy-blue/80">
+          {/* Video Background */}
           <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0]
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
             className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-96 h-96 bg-mars-red/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-navy-blue/10 rounded-full blur-3xl"></div>
-          </motion.div>
-          
-          <div className="container relative grid gap-12 md:grid-cols-2 items-center">
-            <motion.div 
-              initial="initial"
-              animate="animate"
-              variants={fadeInUp}
-              className="space-y-8">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-mars-red/10 rounded-full border border-mars-red/20">
-                <span className="text-mars-red font-semibold">Transform Your Development Team</span>
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <MoveRight className="h-5 w-5 text-mars-red" />
-                </motion.div>
-              </motion.div>
-              <motion.h1 
-                variants={fadeInUp}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-navy-blue leading-tight">
-                Hire Top Developers at{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10">30% Lower Costs</span>
-                  <span className="absolute -bottom-2 left-0 w-full h-3 bg-mars-red/20 rounded-full"></span>
-                </span>
-              </motion.h1>
-              <motion.p 
-                variants={fadeInUp}
-                className="text-xl md:text-2xl text-gray-700 max-w-xl leading-relaxed">
-                Access pre-vetted tech talent ready to integrate seamlessly into your team without sacrificing quality.
-              </motion.p>
-              <motion.div 
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4">
-                <ButtonWithArrow 
-                  variant="outline"
-                  className="border-2 border-navy-blue text-navy-blue hover:bg-navy-blue/5 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto" 
-                  size="lg"
-                  onClick={() => {
-                    const targetSection = document.getElementById('contact-form');
-                    if (targetSection) {
-                      const headerOffset = 100;
-                      const elementPosition = targetSection.getBoundingClientRect().top;
-                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                      
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                >
-                  Learn More
-                </ButtonWithArrow>
-              </motion.div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent z-10"></div>
+            <div className="relative w-full h-full">
               <video
                 src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS%20VIDEO%20(Video)%20(1).mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+                style={{ transform: 'none' }}
               />
-            </motion.div>
+              {/* Enhanced gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-navy-blue/70 via-navy-blue/60 to-navy-blue/70"></div>
+            </div>
+          </motion.div>
+          
+          {/* Content */}
+          <div className="container relative h-full flex items-center">
+            <div className="grid gap-12 md:grid-cols-2 items-center w-full">
+              <motion.div 
+                initial="initial"
+                animate="animate"
+                variants={fadeInUp}
+                className="space-y-8 text-white">
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                  <span className="font-semibold">Transform Your Development Team</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <MoveRight className="h-5 w-5" />
+                  </motion.div>
+                </motion.div>
+                <motion.h1 
+                  variants={fadeInUp}
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                  Hire Top Developers at{" "}
+                  <span className="relative inline-block">
+                    <span className="relative z-10">30% Lower Costs</span>
+                    <motion.span 
+                      className="absolute -bottom-2 left-0 w-full h-3 bg-mars-red rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                    />
+                  </span>
+                </motion.h1>
+                <motion.p 
+                  variants={fadeInUp}
+                  className="text-xl md:text-2xl text-gray-200 max-w-xl leading-relaxed">
+                  Access pre-vetted tech talent ready to integrate seamlessly into your team without sacrificing quality.
+                </motion.p>
+                <motion.div 
+                  variants={fadeInUp}
+                  className="flex flex-col sm:flex-row gap-4">
+                  <ButtonWithArrow 
+                    variant="outline"
+                    className="bg-mars-red hover:bg-mars-red/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto" 
+                    size="lg"
+                    onClick={() => {
+                      const targetSection = document.getElementById('contact-form');
+                      if (targetSection) {
+                        const headerOffset = 100;
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }}
+                  >
+                    Learn More
+                  </ButtonWithArrow>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="hidden md:block">
+                {/* Empty div for grid layout */}
+              </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Core Competencies */}
-        <section id="services" className="relative py-20 md:py-28 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-          {/* Decorative background elements */}
+        <section id="services" className="relative py-20 md:py-28 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden">
+          {/* Enhanced decorative background elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-mars-red/5 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-navy-blue/5 rounded-full blur-3xl"></div>
@@ -388,7 +393,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   whileHover={{ y: -5 }}
                 >
-                  <Card className="relative border-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden group">
+                  <Card className="relative border-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden group bg-white/80 backdrop-blur-sm">
                     {/* Card background gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                     
@@ -447,9 +452,14 @@ export default function LandingPage() {
               </motion.div>
               <h2 className="text-4xl md:text-5xl font-bold text-navy-blue mb-6">
                 Streamlined Operations,{" "}
-                <span className="relative">
-                  Reduced Overhead
-                  <span className="absolute -bottom-2 left-0 w-full h-2 bg-mars-red/20 rounded-full"></span>
+                <span className="relative inline-block">
+                  <span className="relative z-10">Reduced Overhead</span>
+                  <motion.span 
+                    className="absolute -bottom-2 left-0 w-full h-3 bg-mars-red/50 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  />
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
