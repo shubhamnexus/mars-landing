@@ -206,7 +206,7 @@ export default function LandingPage() {
               <motion.a
                 key={item}
                 whileHover={{ scale: 1.1, color: "#E31837" }}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                href={`#${item.toLowerCase().replace(" ", "-") === "contact" ? "contact-form" : item.toLowerCase().replace(" ", "-")}`}
                 className="text-sm font-medium text-navy-blue transition-colors"
               >
                 {item}
@@ -283,7 +283,7 @@ export default function LandingPage() {
                   className="border-2 border-navy-blue text-navy-blue hover:bg-navy-blue/5 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto" 
                   size="lg"
                   onClick={() => {
-                    const targetSection = document.querySelector('.transform-section');
+                    const targetSection = document.getElementById('contact-form');
                     if (targetSection) {
                       const headerOffset = 100;
                       const elementPosition = targetSection.getBoundingClientRect().top;
@@ -545,7 +545,7 @@ export default function LandingPage() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+        <section id="contact-form" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
           <div className="container relative">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

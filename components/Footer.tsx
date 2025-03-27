@@ -62,9 +62,11 @@ const arrowMotion = {
 const ButtonWithArrow = ({ 
   children, 
   className = "", 
+  onClick = () => {}
 }: { 
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
   return (
     <motion.div
@@ -86,6 +88,7 @@ const ButtonWithArrow = ({
           hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
           active:scale-[0.98]
         `}
+        onClick={onClick}
       >
         <motion.span 
           className="relative flex items-center gap-2 z-10"
@@ -125,7 +128,7 @@ const ButtonWithArrow = ({
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="bg-[#383838] text-white py-16">
+    <footer id="footer" className="bg-[#383838] text-white py-16">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info */}
@@ -140,7 +143,27 @@ const Footer: React.FC = () => {
               <p className="text-gray-400 text-lg mb-6">
                 Optimize Your Development Team with MARS Solutions Group
               </p>
-              <ButtonWithArrow className="w-full">
+              <ButtonWithArrow 
+                className="w-full"
+                onClick={() => {
+                  console.log('Button clicked');
+                  const contactSection = document.getElementById('contact-form');
+                  console.log('Contact section found:', contactSection);
+                  if (contactSection) {
+                    const headerOffset = 80;
+                    const elementPosition = contactSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    console.log('Scrolling to position:', offsetPosition);
+                    
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  } else {
+                    console.log('Contact section not found');
+                  }
+                }}
+              >
                 Get in Touch Today!
               </ButtonWithArrow>
             </div>

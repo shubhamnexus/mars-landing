@@ -3,11 +3,22 @@ import nodemailer from 'nodemailer';
 
 // Create a transporter using Google's SMTP server
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
+});
+
+// Verify the connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error('SMTP connection error:', error);
+  } else {
+    console.log('SMTP server is ready to take our messages');
+  }
 });
 
 export async function POST(request: Request) {
