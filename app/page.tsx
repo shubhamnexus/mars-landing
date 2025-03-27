@@ -307,7 +307,7 @@ export default function LandingPage() {
               className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
               <video
-                src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS%20VIDEO%20(Video).mp4"
+                src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS%20VIDEO%20(Video)%20(1).mp4"
                 autoPlay
                 loop
                 muted
