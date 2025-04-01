@@ -116,64 +116,23 @@ const ButtonWithArrow = ({
   onClick
 }: ButtonWithArrowProps) => {
   return (
-    <motion.div
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-      variants={buttonHover}
-      className="relative"
+    <Button 
+      variant={variant} 
+      size={size}
+      type={type}
+      className={`
+        group relative flex items-center gap-2
+        transition-all duration-300
+        ${className}
+        hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+        active:scale-[0.98]
+      `}
+      disabled={disabled}
+      onClick={onClick}
     >
-      <Button 
-        variant={variant} 
-        size={size}
-        type={type}
-        className={`
-          group relative overflow-hidden
-          transition-all duration-300
-          ${className}
-          before:absolute before:inset-0 
-          before:bg-gradient-to-r before:from-white/0 before:to-white/10
-          before:translate-x-[-100%] before:hover:translate-x-0
-          before:transition-transform before:duration-300
-          hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-          active:scale-[0.98]
-        `}
-        disabled={disabled}
-        onClick={onClick}
-      >
-        <motion.span 
-          className="relative flex items-center gap-2 z-10"
-          variants={buttonTextHover}
-        >
-          <motion.span
-            className="relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 group-hover:after:origin-bottom-left group-hover:after:scale-x-100"
-          >
-            {children}
-          </motion.span>
-          <motion.span
-            variants={arrowMotion}
-            className="relative inline-block"
-          >
-            <MoveRight className="h-4 w-4 transition-colors duration-300" />
-          </motion.span>
-        </motion.span>
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0"
-          initial={{ opacity: 0, scale: 0 }}
-          whileHover={{ 
-            opacity: 1, 
-            scale: 2,
-            transition: { duration: 0.4, ease: "easeOut" }
-          }}
-          style={{ 
-            originX: 0.5,
-            originY: 0.5,
-            rotate: -45
-          }}
-        />
-      </Button>
-      <div className="absolute inset-0 rounded-md bg-gradient-to-r from-white/20 to-transparent opacity-0 blur transition-opacity duration-300 group-hover:opacity-100" />
-    </motion.div>
+      <span>{children}</span>
+      <MoveRight className="h-4 w-4 transition-colors duration-300" />
+    </Button>
   )
 }
 
@@ -216,12 +175,14 @@ export default function LandingPage() {
           <ButtonWithArrow 
             className="bg-mars-red hover:bg-mars-red/90 text-white"
             onClick={() => {
-              const formSection = document.querySelector('.transform-section');
-              if (formSection) {
-                const yOffset = -80;
-                const y = formSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              const contactSection = document.getElementById('contact-form');
+              if (contactSection) {
+                const headerOffset = 80;
+                const elementPosition = contactSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
                 window.scrollTo({
-                  top: y,
+                  top: offsetPosition,
                   behavior: 'smooth'
                 });
               }
