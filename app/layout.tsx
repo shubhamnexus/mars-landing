@@ -3,9 +3,14 @@ import './globals.css'
 import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Mars Landing Page',
+  description: 'Welcome to Mars - Your Next Frontier',
   generator: 'v0.dev',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
