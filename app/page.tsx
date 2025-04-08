@@ -496,13 +496,13 @@ export default function LandingPage() {
 
         {/* Case Study Section */}
         <section id="case-study" className="py-16 md:py-24 bg-navy-blue text-white">
-          <div className="container">
+          <div className="container px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12">
+              className="text-center mb-8 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Real-World Impact</h2>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto">Client Success with MARS Staff Augmentation</p>
             </motion.div>
@@ -513,15 +513,18 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="grid md:grid-cols-2 gap-8">
+                className="flex flex-col items-center md:grid md:grid-cols-2 gap-4 md:gap-8">
                 {/* Text Content */}
                 <motion.div
-                  animate={isVideoOpen ? { x: -100 } : { x: 0 }}
+                  animate={{ 
+                    x: isVideoOpen ? (typeof window !== 'undefined' ? (window.innerWidth < 768 ? 0 : -50) : 0) : 0,
+                    width: "100%"
+                  }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className={`bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 ${isVideoOpen ? 'md:col-span-1' : 'md:col-span-2'}`}
+                  className={`bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-6 md:p-8 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 ${isVideoOpen ? 'md:col-span-1 w-[90%] md:w-full' : 'md:col-span-2 w-[90%] md:w-full'}`}
                 >
-                  <div className={`max-w-2xl mx-auto ${isVideoOpen ? 'md:max-w-none' : ''}`}>
-                    <p className="text-lg mb-6">
+                  <div className={`max-w-2xl mx-auto ${isVideoOpen ? 'md:max-w-none px-4 md:px-0' : ''}`}>
+                    <p className="text-base md:text-lg mb-6">
                       After partnering with MARS Solutions Group, our client, a leading tech firm, was able to fill critical
                       development roles in just two weeks. This resulted in a 30% reduction in project delays, improved team
                       productivity, and more efficient use of their internal resources.
@@ -529,7 +532,7 @@ export default function LandingPage() {
                     <motion.div className="flex justify-center">
                       <ButtonWithArrow 
                         variant="outline" 
-                        className="border border-white/30 text-white bg-transparent hover:bg-white/5 hover:border-white/50 transition-all duration-300"
+                        className="w-full md:w-auto border border-white/30 text-white bg-transparent hover:bg-white/5 hover:border-white/50 transition-all duration-300"
                         onClick={() => setIsVideoOpen(true)}
                       >
                         View Full Case Study
@@ -540,12 +543,12 @@ export default function LandingPage() {
 
                 {/* Video Content */}
                 <motion.div
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={isVideoOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={isVideoOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className={`relative w-full h-full transition-all duration-300 ${isVideoOpen ? 'block' : 'hidden'}`}
+                  className={`relative w-[90%] md:w-full transition-all duration-300 ${isVideoOpen ? 'block mt-6 md:mt-0' : 'hidden'}`}
                 >
-                  <div className="relative w-full h-full bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg">
+                  <div className="relative w-full bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/10 shadow-lg">
                     <div className="relative w-full aspect-video">
                       <video
                         ref={videoRef}
@@ -559,9 +562,9 @@ export default function LandingPage() {
                       />
                       <button
                         onClick={handleCloseVideo}
-                        className="absolute -top-4 -right-4 bg-mars-red text-white rounded-full p-2 hover:bg-mars-red/90 transition-colors"
+                        className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-mars-red text-white rounded-full p-2 hover:bg-mars-red/90 transition-colors z-10"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
