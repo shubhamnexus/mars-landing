@@ -28,7 +28,7 @@ import {
 } from "lucide-react"
 import { motion } from "framer-motion"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -137,6 +137,16 @@ const ButtonWithArrow = ({
 }
 
 export default function LandingPage() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleCloseVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setIsVideoOpen(false);
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
@@ -497,33 +507,69 @@ export default function LandingPage() {
               <p className="text-lg text-gray-200 max-w-2xl mx-auto">Client Success with MARS Staff Augmentation</p>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-8 rounded-xl max-w-3xl mx-auto border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-              <p className="text-lg mb-6">
-                After partnering with MARS Solutions Group, our client, a leading tech firm, was able to fill critical
-                development roles in just two weeks. This resulted in a 30% reduction in project delays, improved team
-                productivity, and more efficient use of their internal resources.
-              </p>
-              <motion.div className="flex justify-center">
-                <a 
-                  href="https://drive.google.com/file/d/129HmwGNUWEgMRFbAg3IjChQ-1wKb7Iu9/view?usp=drive_link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block"
+            <div className="relative max-w-6xl mx-auto">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="grid md:grid-cols-2 gap-8">
+                {/* Text Content */}
+                <motion.div
+                  animate={isVideoOpen ? { x: -100 } : { x: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className={`bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 ${isVideoOpen ? 'md:col-span-1' : 'md:col-span-2'}`}
                 >
-                  <ButtonWithArrow 
-                    variant="outline" 
-                    className="border border-white/30 text-white bg-transparent hover:bg-white/5 hover:border-white/50 transition-all duration-300"
-                  >
-                    View Full Case Study
-                  </ButtonWithArrow>
-                </a>
+                  <div className={`max-w-2xl mx-auto ${isVideoOpen ? 'md:max-w-none' : ''}`}>
+                    <p className="text-lg mb-6">
+                      After partnering with MARS Solutions Group, our client, a leading tech firm, was able to fill critical
+                      development roles in just two weeks. This resulted in a 30% reduction in project delays, improved team
+                      productivity, and more efficient use of their internal resources.
+                    </p>
+                    <motion.div className="flex justify-center">
+                      <ButtonWithArrow 
+                        variant="outline" 
+                        className="border border-white/30 text-white bg-transparent hover:bg-white/5 hover:border-white/50 transition-all duration-300"
+                        onClick={() => setIsVideoOpen(true)}
+                      >
+                        View Full Case Study
+                      </ButtonWithArrow>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Video Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={isVideoOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className={`relative w-full h-full transition-all duration-300 ${isVideoOpen ? 'block' : 'hidden'}`}
+                >
+                  <div className="relative w-full h-full bg-gradient-to-br from-white/5 via-white/10 to-transparent backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg">
+                    <div className="relative w-full aspect-video">
+                      <video
+                        ref={videoRef}
+                        className="w-full h-full rounded-lg object-cover"
+                        controls
+                        autoPlay
+                        playsInline
+                        disablePictureInPicture
+                        controlsList="nodownload"
+                        src="https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/MARS/MARSCaseStudy1.mp4"
+                      />
+                      <button
+                        onClick={handleCloseVideo}
+                        className="absolute -top-4 -right-4 bg-mars-red text-white rounded-full p-2 hover:bg-mars-red/90 transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
